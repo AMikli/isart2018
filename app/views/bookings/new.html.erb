@@ -9,7 +9,7 @@
             <div id=<%= "housing-#{housing.id}"%> class= "card">
               <div class="thumbnail">
                 <div class="card-image">
-                  <%= image_tag("housing#{housing.id}.jpg") %>
+                  <%= cl_image_tag("housing#{housing.id}.jpg", crop: :fill) %>
                 </div>
               </div>
               <div class="card-content">

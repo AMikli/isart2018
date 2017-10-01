@@ -18,6 +18,8 @@ gem 'simple_form'
 gem 'country_select'
 gem 'uglifier'
 
+gem 'cloudinary'
+
 source "https://rails-assets.org" do
   gem 'rails-assets-bootstrap-datepicker'
 end
