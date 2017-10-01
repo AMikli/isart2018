@@ -1,0 +1,67 @@
+<div class="container">
+  <h1>Bienvenue <%= @guest.first_name %></h1>
+   <%= simple_form_for [@guest, @booking] do |f| %>
+     <h2>Choix du logement</h2>
+      <%= f.input :housing_id, collection: ["1", "2", "3"], input_html: {class: "hidden", id:"add_housing"}  %>
+      <div class="row">
+        <% @housings.each do |housing| %>
+          <div class="col-xs-12 col-md-4">
+            <div id=<%= "housing-#{housing.id}"%> class= "card">
+              <div class="thumbnail">
+                <div class="card-image">
+                  <%= image_tag("housing#{housing.id}.jpg") %>
+                </div>
+              </div>
+              <div class="card-content">
+                <div class="card-title">
+                  <%= housing.name %>
+                </div>
+                <div class="card-subtitle">
+                  <span><%= housing.address %></span>
+                </div>
+                <div class="card-description" style="display: none; height: 100%; opacity: 1;">
+                  <% if housing.price_ve1 != 0 %>
+                    <ul>
+                      <li>Prix chambre simple le vendredi: <%= housing.price_ve1 %>€</li>
+                      <li>Prix chambre double le vendredi: <%= housing.price_ve2 %>€</li>
+                      <li>Prix chambre simple le samedi: <%= housing.price_sa1 %>€</li>
+                      <li>Prix chambre double le samedi: <%= housing.price_sa2 %>€</li>
+                    </ul>
+                  <% else %>
+                    <p>Nous n'avons pas les prix, nous attendons vos réponses aux questionnaires pour pouvoir les négocier en fonction du nombre d'appart.</p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <%= f.input :beds, label: 'Combien de lits ?' %>
+     <h2>Coordonnées</h2>
+      <%= f.button :submit %>
+  <% end %>
+</div>
+
+<% content_for(:after_js) do %>
+  <script>
+
+    $('#housing-1').on('click', function(e){
+      $("#add_housing").val("1");
+      $("#housing-1").addClass("card-active");
+      $("#housing-2").removeClass("card-active");
+      $("#housing-3").removeClass("card-active");
+    });
+    $('#housing-2').on('click', function(e){
+      $("#add_housing").val("2");
+      $("#housing-2").addClass("card-active");
+      $("#housing-1").removeClass("card-active");
+      $("#housing-3").removeClass("card-active");
+    });
+    $('#housing-3').on('click', function(e){
+      $("#add_housing").val("3");
+      $("#housing-3").addClass("card-active");
+      $("#housing-2").removeClass("card-active");
+      $("#housing-1").removeClass("card-active");
+    });
+  </script>
+<% end %>

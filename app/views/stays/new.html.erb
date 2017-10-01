@@ -1,0 +1,136 @@
+<div class="container">
+  <h1>Un dernier pour la route, <%= @guest.first_name %></h1>
+   <%= simple_form_for [@guest, @stay] do |f| %>
+     <h2>Locomotion</h2>
+      <%= f.input :type, collection: ["Train", "Voiture", "Avion"], input_html: {class: "hidden", id:"add_stay"} %>
+      <div class="row">
+        <div class="col-xs-12 col-md-4">
+          <div id=<%= "stay-1"%> class= "card">
+            <div class="thumbnail">
+              <div class="card-image">
+                <%= image_tag("housing3.jpg") %>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="card-title">
+                <span>Trajet en Train</span>
+              </div>
+              <div class="card-subtitle">
+                <span>Tarif et horaires à venir</span>
+              </div>
+              <div class="card-description" style="display: none; height: 100%; opacity: 1;">
+                <ul>
+                  <li>
+                    Paris gare de lyon - Grenoble : 3h
+                  </li>
+                  <li>
+                    Car Grenoble - Alpe d'Huez : 1h30 (Bus Transaltitude, ou car privé que nous réserverons)
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-4">
+          <div id=<%= "stay-2"%> class= "card">
+            <div class="thumbnail">
+              <div class="card-image">
+                <%= image_tag("housing3.jpg") %>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="card-title">
+                <span>Trajet en Voiture</span>
+              </div>
+              <div class="card-subtitle">
+                <span>7h de trajet depuis Paris</span>
+              </div>
+              <div class="card-description" style="display: none; height: 100%; opacity: 1;">
+                <ul>
+                  <li>
+                    Parking : de grands parkings sont disponibles près de l'Eglise et du Chamois d'Or
+                  </li>
+                  <li>
+                    Conditions météo : Pas de neige à prévoir en Avril...
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-4">
+          <div id=<%= "stay-3"%> class= "card">
+            <div class="thumbnail">
+              <div class="card-image">
+                <%= image_tag("housing3.jpg") %>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="card-title">
+                <span>Trajet en Avion</span>
+              </div>
+              <div class="card-subtitle">
+                <span>Aéroport de Grenoble Isère</span>
+              </div>
+              <div class="card-description" style="display: none; height: 100%; opacity: 1;">
+                <ul>
+                  <li>
+                    1h30 de trajet à prévoir jusqu'à l'Alpe d'Huez
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%= f.input :go_date, as: :string, input_html: {class: "datepicker"}%>
+      <%= f.input :return_date, as: :string, input_html: {class: "datepicker"}%>
+      <%= f.input :carpooling_offer, as: :boolean, label: "Je suis prêt à mettre à disposition ma voiture pour organiser un covoiturage avec d'autres invités" %>
+      <%= f.input :group_offer, as: :boolean, label: "J'aimerai réserver mon train avec un tarif de groupe" %>
+      <%= f.button :submit %>
+  <% end %>
+</div>
+
+<% content_for(:after_js) do %>
+  <script>
+    $('#stay-1').on('click', function(e){
+      $("#add_stay").val("1");
+      $("#stay-1").addClass("card-active");
+      $("#stay-2").removeClass("card-active");
+      $("#stay-3").removeClass("card-active");
+    });
+    $('#stay-2').on('click', function(e){
+      $("#add_stay").val("2");
+      $("#stay-2").addClass("card-active");
+      $("#stay-1").removeClass("card-active");
+      $("#stay-3").removeClass("card-active");
+    });
+    $('#stay-3').on('click', function(e){
+      $("#add_stay").val("3");
+      $("#stay-3").addClass("card-active");
+      $("#stay-2").removeClass("card-active");
+      $("#stay-1").removeClass("card-active");
+    });
+    // BOOTSTRAP DATEPICKER
+    var dates = ["14/04/2018"];
+
+    $(function(){
+      $('.datepicker').datepicker({
+        beforeShowDay: function(date) {
+            if (date = new Date("2018", "14", "4")) {
+              return [true, "activeClass", date];
+            } else {
+              return [true, '', ''];
+            }
+        },
+        maxViewMode: 2,
+        weekStart: 1,
+        autoclose: true,
+        dateFormat: 'dd/mm/yy',
+        orientation: "auto left",
+        startDate: "04/10/2018",
+        endDate: "04/20/2018",
+      });
+    });
+  </script>
+<% end %>

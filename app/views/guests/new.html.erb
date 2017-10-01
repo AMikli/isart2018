@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>Fill the form</h1>
+   <%= simple_form_for @guest do |f| %>
+     <h2>Etat civil</h2>
+      <%= f.input :first_name, label: 'Quel est votre prénom ?', placeholder: 'Tutur' %>
+      <%= f.input :last_name, label: 'Quel est votre nom ?', placeholder: 'Fox a poil dur' %>
+     <h2>Coordonnées</h2>
+      <%= f.input :email, label:'Email', placeholder: 'tutur@yahoo.fr' %>
+      <%= f.input :address, label: 'Adresse', placeholder: 'Tutur' %>
+      <%= f.input :zip_code, label: 'Code Postal', placeholder: '75000' %>
+      <%= f.input :country, label: 'Pays', placeholder: 'France' %>
+      <%= f.button :submit %>
+  <% end %>
+</div>

@@ -1,0 +1,100 @@
+.card {
+  position: relative;
+  z-index: 1;
+  display: block;
+  background: linear-gradient(-225deg, rgba(0,0,0,0.3), rgba(0,0,0,0.2));
+  min-width: 180px;
+  height: 400px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+  background-size: cover !important;
+  color: $blue;
+  margin-bottom: 20px;
+  transition: all 0.3s linear 0s;
+}
+.card:hover {
+  cursor:pointer;
+  box-shadow: 0px 1px 35px 0px rgba(0, 0, 0, 0.3);
+  .card-image{
+    transform: scale(1.1);
+    opacity: .5;
+  }
+  .card-description {
+    display: block !important;
+    height: auto !important;
+    opacity: 1 !important;
+  }
+}
+.thumbnail {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+.card-image {
+  display: block;
+  width: 120%;
+  transition: all 0.3s linear 0s;
+}
+.card-user {
+  position: absolute;
+  bottom: 55px;
+  right: 20px;
+  z-index: 1;
+  background: $yellow;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  box-sizing: border-box;
+}
+.card-content {
+  position: absolute;
+  bottom: 0;
+  background: #FFFFFF;
+  width: 100%;
+  padding: 15px 30px;
+  box-sizing: border-box;
+  transition: all 0.3s cubic-bezier(0.37, 0.75, 0.61, 1.05) 0s;
+}
+
+.card-title {
+  vertical-align: baseline;
+  font-size: 30px;
+  margin-top: 5px;
+}
+.card-subtitle {
+  vertical-align: baseline;
+  font-size: 23px;
+}
+.card-category {
+  position: absolute;
+  top: -39px;
+  left: 0;
+  background: $yellow;
+  padding: 7px 15px;
+  color: $blue;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.card-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 2;
+}
+.card-status {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: $yellow;
+  font-size: 30px;
+}
+.card.card-active{
+  border:1px solid blue;
+}
