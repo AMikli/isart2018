@@ -28,10 +28,11 @@ names = ["Le Chamois d'or", "Le Pelvoux", "Agence de location"]
 prices = [[150, 250, 90, 120], [90, 80, 60, 50], [0, 0, 0, 0]]
 zip_code = "38750"
 phones = ["0476803132", "0476803014", "0476803640"]
+urls = ["http://res.cloudinary.com/ddyhe1g4j/image/upload/v1506881442/housing1.jpg", "http://res.cloudinary.com/ddyhe1g4j/image/upload/v1506881442/housing2.jpg", "http://res.cloudinary.com/ddyhe1g4j/image/upload/v1506881442/housing3.jpg"]
 i = 0
 
 while i < 3 do
-  housing = Housing.create({
+  housing = Housing.new({
     name: names[i],
     address: addresses[i],
     zip_code: zip_code,
@@ -42,6 +43,8 @@ while i < 3 do
     price_sa2: prices[i][3],
     phone: phones[i]
     })
+  housing.remote_photo_url = urls[i]
+  housing.save
   i += 1
 end
 
